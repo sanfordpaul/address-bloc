@@ -10,43 +10,38 @@ require_relative '../models/address_book'
    def main_menu
      puts "Main Menu - #{address_book.entries.count} entries"
      puts "1 - View all entries"
-     puts "2 - View Entry Number n"
-     puts "3 - Create an entry"
-     puts "4 - Search for an entry"
-     puts "5 - Import entries from a CSV file"
-     puts "6 - Exit"
+     puts "2 - Create an entry"
+     puts "3 - Search for an entry"
+     puts "4 - Import entries from a CSV file"
+     puts "5 - Exit"
      print "Enter your selection: "
 
      selection = gets.to_i
 
      case selection
-        when 1
-             system "clear"
-             view_all_entries
-             main_menu
-        when 2
-             system "clear"
-             display_entry_n
-             main_menu
-        when 3
-             system "clear"
-             create_entry
-             main_menu
-        when 4
-             system "clear"
-             search_entries
-             main_menu
-        when 5
-             system "clear"
-             read_csv
-             main_menu
-        when 6
-             puts "Good-bye!"
-             exit(0)
+       when 1
+         system "clear"
+         view_all_entries
+         main_menu
+       when 2
+         system "clear"
+         create_entry
+         main_menu
+       when 3
+         system "clear"
+         search_entries
+         main_menu
+       when 4
+         system "clear"
+         read_csv
+         main_menu
+       when 5
+         puts "Good-bye!"
+         exit(0)
        else
-             system "clear"
-             puts "Sorry, that is not a valid input"
-             main_menu
+         system "clear"
+         puts "Sorry, that is not a valid input"
+         main_menu
      end
    end
 
@@ -60,20 +55,7 @@ require_relative '../models/address_book'
        system "clear"
        puts "End of entries"
    end
-   def display_entry_n
 
-       system "clear"
-       print "Enter entry number to view: "
-       selection = gets.chomp
-       if selection.to_i.is_a?(Integer) and selection.to_i.between?(1, address_book.entries.length) 
-           index = selection.to_i - 1
-           entry = address_book.entries[index]
-           puts entry.to_s
-       else
-            puts "#{selection} is not a valid input"
-       end
-       main_menu
-   end
    def create_entry
        system "clear"
        puts "New AddressBloc Entry"
@@ -97,6 +79,7 @@ require_relative '../models/address_book'
    def read_csv
    end
    def entry_submenu(entry)
+     # #16
      puts "n - next entry"
      puts "d - delete entry"
      puts "e - edit this entry"
@@ -111,6 +94,7 @@ require_relative '../models/address_book'
        when "d"
        when "e"
        when "m"
+
          system "clear"
          main_menu
        else
