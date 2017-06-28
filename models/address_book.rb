@@ -28,6 +28,12 @@ class AddressBook
       end
     end
 
+    def remove_all
+
+        entries.clear
+
+    end
+
    def import_from_csv(file_name)
 
      csv_text = File.read(file_name)

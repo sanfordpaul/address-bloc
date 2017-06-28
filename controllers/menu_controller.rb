@@ -15,6 +15,7 @@ require_relative '../models/address_book'
      puts "4 - Search for an entry"
      puts "5 - Import entries from a CSV file"
      puts "6 - Exit"
+     puts "7 - NUKE"
      print "Enter your selection: "
 
      selection = gets.to_i
@@ -43,6 +44,10 @@ require_relative '../models/address_book'
         when 6
              puts "Good-bye!"
              exit(0)
+        when 7
+            puts "NUKE - ALL ENTRIES WILL BE DELETED"
+            nuke
+            main_menu
        else
              system "clear"
              puts "Sorry, that is not a valid input"
@@ -117,7 +122,7 @@ require_relative '../models/address_book'
          main_menu
        end
 
-       #file_name = "data/" + file_name
+
 
        begin
          entry_count = address_book.import_from_csv("data/" + file_name).count
@@ -205,4 +210,17 @@ require_relative '../models/address_book'
          search_submenu(entry)
      end
    end
+
+   def nuke
+       print " Do you wish to continue: y/N: "
+       continue = gets.chomp
+       if continue.downcase == "y"
+           address_book.remove_all
+       end
+       system "clear"
+       if address_book.entries.length == 0
+           puts "All entries removed!!!"
+       end
+   end
+
  end
